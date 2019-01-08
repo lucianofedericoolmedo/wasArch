@@ -1,0 +1,67 @@
+<div>
+    <h3>Tablas auxiliares tipificación de cuentas</h3>
+  </div>
+<div>
+  <form [formGroup]="form" class="search-group-container mb-3">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="app-form-group">
+          <label>Valor: (%)</label>
+          <div class="app-form-input">
+            <input type="text" name="valor" formControlName="valor">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="app-form-group">
+          <label>Entidad: (%)</label>
+          <div class="app-form-input">
+            <input type="text" name="entidad" formControlName="entidad">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-form-group app-btn-group">
+      <button type="button" class="app-btn"
+        (click)="search()">
+        BUSCAR
+      </button>
+    </div>
+  </form>
+
+  <div class="app-form-group">
+    <div class="row">
+      <div class="col-md-4">
+  <!--
+        <button type="button" class="app-btn"
+          (click)="goBack()">
+          VOLVER
+        </button>
+  -->
+      </div>
+      <div class="col-md-8">
+        <button type="button" class="app-btn pull-right">
+          GRABAR
+        </button>
+        <ng-template #descargarXls>
+          <span style="white-space: nowrap;">Descargar xls</span>
+        </ng-template>
+        <app-file-downloader
+          class="pull-right app-btn-actions"
+          [infoMsg]="descargarXls"
+          [restCallFunction]="getRestCallFunction()"
+          [fileName]="getApplicationProductSourceFileName()"
+          [fileType]="getDownloadedFileType()">
+        </app-file-downloader>
+      </div>
+    </div>
+  </div>
+
+  <app-paginated-table
+    *ngIf="tableFields"
+    [context]="getPaginationContext()"
+    [fields]="tableFields"
+    [columns]="tableColumns"
+    [query]="queryObject">
+  </app-paginated-table>
+</div>

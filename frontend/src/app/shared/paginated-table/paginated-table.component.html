@@ -1,0 +1,91 @@
+<div class="table-responsive app-paginated-table">
+  <span *ngIf="fields.displayData && fields.displayData.length">
+    <table class="table table-condensed">
+      <thead>
+        <tr><th *ngFor="let column of columns" [ngStyle]="column.style">{{ column.value }}</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let field of fields.displayData">
+            <div *ngIf="field.fieldName" style="white-space: nowrap">
+              {{ row[field.fieldName] }}
+            </div>
+            <div *ngIf="field.fieldDate">
+              {{ row[field.fieldDate] | date:field.format }}
+            </div>
+            <div *ngIf="field.buttonAction">
+              <button type="button" class="app-btn" [ngClass]="field.class" (click)="field.buttonAction(row)">
+                {{ field.buttonLabel }}
+              </button>
+            </div>
+            <div *ngIf="field.buttons">
+              <span *ngFor="let btn of field.buttons">
+                <button type="button" class="app-btn" [ngClass]="btn.class" (click)="btn.buttonAction(row)">
+                  {{ btn.buttonLabel }}
+                </button>
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </span>
+
+  <span *ngIf="fields.inputData">
+    <form [formGroup]="paginatedForm">
+      <table class="table table-condensed" formArrayName="formRow">
+        <thead>
+          <tr><th *ngFor="let column of columns" [ngStyle]="column.style">{{ column.value }}</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data; let $index=index" [formGroupName]="$index">
+            <td *ngFor="let fieldName of fieldsNames">
+              <div class="app-form-group">
+                <div *ngIf="fields.inputData[fieldName].type === 'input'">
+                  <input type="text" [name]="fieldName" [formControlName]="fieldName"/>
+                </div>
+                <div *ngIf="fields.inputData[fieldName].type === 'display'">
+                  <span>{{ row[fieldName] }}</span>
+                </div>
+                <div *ngIf="fields.inputData[fieldName].type === 'link'">
+                  <a [attr.href]="'//'" target="_blank">
+                    <span>Detalle</span>
+                  </a>
+                </div>
+                <div *ngIf="fields.inputData[fieldName].type === 'select'">
+                  <div class="app-form-select">
+                    <select class="app-select" [name]="fieldName" [formControlName]="fieldName">
+                      <option value="">Seleccione una opción</option>
+                      <option *ngFor="let value of fields.inputData[fieldName].values"
+                        [ngValue]="fields.inputData[fieldName].valueField ? value[fields.inputData[fieldName].valueField] : value">
+                        {{ fields.inputData[fieldName].displayField ? value[fields.inputData[fieldName].displayField] : value }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div *ngIf="fields.inputData[fieldName].type === 'date'">
+                  <div class="app-form-input">
+                    <input ngbDatepicker #d="ngbDatepicker" readonly="readonly" [name]="fieldName" [formControlName]="fieldName"/>
+                    <i (click)="!editing && d.toggle()" class="fa fa-calendar app-datepicker-icon">
+                    </i>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </span>
+</div>
+<div class="app-pager">
+    <ngb-pagination
+      [collectionSize]="collectionSize" 
+      [(page)]="page" 
+      [maxSize]="9" 
+      [rotate]="true" 
+      [ellipses]="false" 
+      [boundaryLinks]="true"
+      (pageChange)="onPageChange($event)">
+    </ngb-pagination>
+</div>

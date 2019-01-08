@@ -1,0 +1,68 @@
+<div>
+  <h3>Informes - Informes Join</h3>
+</div>
+<div class="container-fluid">
+  <form [formGroup]="form" class="mb-3 search-group-container">
+    <div class="row">
+      <div class="col-md-4">
+          <div class="app-form-group">
+            <label>Fecha Proceso(yyyymmdd)</label>
+            <div class="app-form-select">
+              <select class="app-select" name="date" formControlName="date">
+                <option value="">Seleccione una opción</option>
+                <option [value]="date" *ngFor="let date of dates">{{ date }}</option>
+              </select>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="app-form-group">
+          <label>Contenidos</label>
+          <div class="app-form-select">
+            <select class="app-select" name="content" formControlName="content">
+              <option value="">Seleccione una opción</option>
+              <option [value]="content.codigo" *ngFor="let content of contents">{{ content.descripcion }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="app-form-group">
+          <label>Sistemas Origen</label>
+          <div class="app-form-select">
+            <select class="app-select" name="cod_sist_origen" formControlName="cod_sist_origen">
+              <option value="">Seleccione una opción</option>
+              <option [value]="codSistemaOrigen.codigo" *ngFor="let codSistemaOrigen of codigosSistemaOrigen">{{ codSistemaOrigen.descripcion }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-form-group app-btn-group">
+      <button type="button" class="app-btn"
+        (click)="search()">
+        BUSCAR
+      </button>
+    </div>
+  </form>
+  <app-paginated-table 
+    [context]="getRejectionJoinPaginationContext()"
+    [fields]="rejectonsJoinTableDataFieldsName"
+    [columns]="rejectionsJoinTableDataFieldsColumns"
+    [query]="queryObject">
+  </app-paginated-table>
+  <div class="app-form-group">
+    <ng-template #descargarXls>
+      <span style="white-space: nowrap;">Descargar xls</span>
+    </ng-template>
+    <app-file-downloader
+      class="pull-right mb-3"
+      [infoMsg]="descargarXls"
+      [restCallFunction]="getRestCallFunction()"
+      [fileName]="getRejectionJoinFileName()"
+      [fileType]="getDownloadedFileType()">
+    </app-file-downloader>
+  </div>
+</div>

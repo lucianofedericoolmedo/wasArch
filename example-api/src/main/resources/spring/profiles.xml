@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd        
+        http://cxf.apache.org/jaxrs
+        http://cxf.apache.org/schemas/jaxrs.xsd">
+
+	<!-- Load configuration to run the app in localhost (dev) -->
+	<beans profile="localhost">
+		<context:property-placeholder
+			location="classpath:profiles/dev/consolidar-backend-localhost.properties"
+			ignore-unresolvable="true" />
+	</beans>
+	
+	<!-- Load configuration to run the app in localhost (dev) -->
+	<beans profile="dev">
+		<context:property-placeholder
+			location="classpath:profiles/dev/consolidar-backend-localhost.properties"
+			ignore-unresolvable="true" />
+	</beans>
+
+	<!-- Load configuration to run the app in prod -->
+	<beans profile="prod">
+		<context:property-placeholder 
+		    location="classpath:profiles/prod/consolidar-backend-prod.properties"
+			ignore-unresolvable="true" />
+	</beans>
+
+
+</beans>

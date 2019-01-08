@@ -1,0 +1,88 @@
+<div>
+  <div>
+    <h3>Productos</h3>
+  </div>
+  <form [formGroup]="form" class="search-group-container">
+    <div class="op-nac">
+      <label class="radio-inline" [class.active]="rOperacional.checked">
+        <input #rOperacional type="radio" (change)="changedIsOperacional($event.target.value); isOperacional = !isOperacional" formControlName="isOperacional" value="true" checked>
+          <span>Operacional</span>
+      </label>
+      <label class="radio-inline" [class.active]="rNormalizado.checked">
+        <input #rNormalizado type="radio" (change)="changedIsOperacional($event.target.value); isOperacional = !isOperacional" formControlName="isOperacional" value="false">
+          <span>Normalizado</span>
+      </label>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="app-form-group">
+          <label>Cód. Sistema Origen</label>
+          <div class="app-form-select">
+            <select class="app-select" name="codSistemaOrigen" formControlName="codSistemaOrigen">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let codSistemaOrigen of codigosSistemaOrigen">{{ codSistemaOrigen }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="app-form-group">
+          <label *ngIf="isOperacional">Prod. Operacional</label>
+          <label *ngIf="!isOperacional">Prod. Normalizado</label>
+          <div class="app-form-select">
+            <select class="app-select" name="prodOperacional" formControlName="prodOperacional"
+              (change)="changedProductoOperacional($event.target.value)">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let prodOperacional of productosOperacional">{{ prodOperacional }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="app-form-group">
+          <label *ngIf="isOperacional">Subprod. Operacional</label>
+          <label *ngIf="!isOperacional">Subprod. Normalizado</label>
+          <div class="app-form-select">
+            <select class="app-select" name="subprodOperacional" formControlName="subprodOperacional">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let subProdOperacional of subproductosOperacional">{{ subProdOperacional }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-form-group app-btn-group">
+      <button type="button" class="app-btn"
+        (click)="search()">
+        BUSCAR
+      </button>
+
+      <button type="button" class="app-btn ml-1" [routerLinkActive]="'active'" [routerLink]="['/products/create']">
+        AGREGAR
+      </button>
+    </div>
+  </form>
+  <app-paginated-table [context]="getProductsPaginationContext()"
+    [fields]="productTableDataFieldsName"
+    [columns]="productTableDataFieldsColumns"
+    [query]="queryObject">
+  </app-paginated-table>
+
+  <ng-template #descargarXls>
+    <span style="white-space: nowrap;">Descargar xls</span>
+  </ng-template>
+  
+  <div class="app-form-group app-btn-group">
+      <app-file-downloader
+      class="pull-right app-btn-download"
+      [infoMsg]="descargarXls"
+      [restCallFunction]="getRestCallFunction()"
+      [fileName]="getApplicationProductSourceFileName()"
+      [fileType]="getDownloadedFileType()">
+    </app-file-downloader>
+  </div>
+</div>

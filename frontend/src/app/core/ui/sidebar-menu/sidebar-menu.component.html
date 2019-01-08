@@ -1,0 +1,536 @@
+<!-- Sidebar -->
+<nav id="sidebar" [ngClass]="isCollapsed ? '' : 'active'">
+  <ul class="list-unstyled components container-fluid">
+    <li>
+      <a id="sidebarCollapse" class="btn-collapse" (click)="toogleIsCollapsed()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+    
+    <li>
+      <a [routerLinkActive]="'active'" [routerLink]="['/home']">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-home"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Inicio </span>
+          </div>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a data-toggle="collapse" 
+        href="#informesSubmenu" 
+        (click)="clickedMenuItem(true,'producto')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'producto'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-archive"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Producto </span>
+          </div>
+        </div>
+      </a>
+      <ul class="collapse list-unstyled elems" 
+        id="collapseExample" 
+        [@expandCollapse]="showMenu !== 'producto' ? 'closed' : 'open'"
+        [ngbCollapse]="showMenu !== 'producto'">
+          <li>
+            <a [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/products']">
+              <i class="fa fa-file-text"></i>
+              Productos
+            </a>
+          </li>
+          <li>
+            <a [routerLinkActive]="'active'" [routerLink]="['/products/application']">
+              <i class="fa fa-file-text"></i>
+              Aplicativo Fuente
+            </a>
+          </li>
+        </ul>
+    </li>
+
+    <li>
+      <a data-toggle="collapse" 
+        href="#informesSubmenu" 
+        (click)="clickedMenuItem(true,'congelamientoContable')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'congelamientoContable'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-balance-scale"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Congelamiento Contable </span>
+          </div>
+        </div>
+      </a>
+      <ul class="collapse list-unstyled elems" 
+        id="collapseExample" 
+        [@expandCollapse]="showMenu !== 'congelamientoContable' ? 'closed' : 'open'"
+        [ngbCollapse]="showMenu !== 'congelamientoContable'">
+          <li>
+            <a [routerLinkActive]="'active'" [routerLink]="['/accounting/subsidiary']">
+              <i class="fa fa-file-text"></i>
+              Filial
+            </a>
+          </li>
+          <li>
+            <a [routerLinkActive]="'active'" [routerLink]="['/accounting/altair']">
+              <i class="fa fa-file-text"></i>
+              Altair
+            </a>
+          </li>
+        </ul>
+    </li>
+
+    <li>
+      <a data-toggle="collapse" 
+        href="#informesSubmenu" 
+        (click)="clickedMenuItem(true,'jerarquia')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'jerarquia'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-sitemap"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Jerarquías </span>
+          </div>
+        </div>
+      </a>
+      <ul class="collapse list-unstyled elems" 
+        id="collapseExample" 
+        [@expandCollapse]="showMenu !== 'jerarquia' ? 'closed' : 'open'"
+        [ngbCollapse]="showMenu !== 'jerarquia'">
+          <li>
+            <a [routerLinkActive]="'active'" [routerLink]="['/hierarchies/global-groups']">
+              <i class="fa fa-file-text"></i>
+              Grupos Globales
+            </a>
+          </li>
+        </ul>
+    </li>
+
+    <li>
+      <a data-toggle="collapse" 
+        href="#informesSubmenu" 
+        (click)="clickedMenuItem(true,'informe')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'informe'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-archive"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Informes </span>
+          </div>
+        </div>
+      </a>
+      <ul class="collapse list-unstyled elems" 
+        id="collapseExample" 
+        [@expandCollapse]="showMenu !== 'informe' ? 'closed' : 'open'"
+        [ngbCollapse]="showMenu !== 'informe'">
+          <li>
+            <a [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/rejections/join']">
+              <i class="fa fa-file-text"></i>
+              Informes JOIN
+            </a>
+          </li>
+        </ul>
+    </li>
+
+    <li>
+      <a 
+        data-toggle="collapse" 
+        href="#conciliationSubmenu" 
+        (click)="clickedMenuItem(true,'conciliation')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'conciliation'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-handshake-o"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Conciliación </span>
+          </div>
+        </div>
+      </a>
+      <ul class="collapse list-unstyled" 
+        id="collapseExample"
+        [@expandCollapse]="showMenu !== 'conciliation' ? 'closed' : 'open'" 
+        [ngbCollapse]="showMenu !== 'conciliation'">
+        <li>
+          <a 
+            data-toggle="collapse" 
+            href="#conciliationSubmenu" 
+            (click)="toggleShowPropInner('conciliationMonthly')" 
+            class="dropdown-toggle inner-menu"
+            [attr.aria-expanded]="showMenuInner === 'conciliationMonthly'" 
+            aria-controls="collapseExampleInner">
+            <div class="row">
+              <div class="col-2">
+                <!-- <i class="fa fa-handshake-o"></i> -->
+              </div>
+              <div class="col-10">
+                <span class="hideable-text"> Mensual </span>
+              </div>
+            </div>
+          </a>
+          <ul class="collapse list-unstyled" 
+            id="collapseExampleInner"
+            [@expandCollapse]="showMenuInner !== 'conciliationMonthly' ? 'closed' : 'open'" 
+            [ngbCollapse]="showMenuInner !== 'conciliationMonthly'">
+            <li class="inner-menu-item">
+              <a [routerLinkActive]="'active'" [routerLink]="['/conciliations/monthly/with-center']">
+                <i class="fa fa-file-text"></i>
+                Con Centro
+              </a>
+            </li>
+            <li class="inner-menu-item">
+              <a [routerLinkActive]="'active'" [routerLink]="['/conciliations/monthly/without-center']">
+                <i class="fa fa-file-text"></i>
+                Sin Centro
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a 
+            data-toggle="collapse" 
+            href="#conciliationSubmenu" 
+            (click)="toggleShowPropInner('conciliationDaily')" 
+            class="dropdown-toggle inner-menu"
+            [attr.aria-expanded]="showMenuInner === 'conciliationDaily'" 
+            aria-controls="collapseExampleInner">
+            <div class="row">
+              <div class="col-2">
+                <!-- <i class="fa fa-handshake-o"></i> -->
+              </div>
+              <div class="col-10">
+                <span class="hideable-text"> Diaria </span>
+              </div>
+            </div>
+          </a>
+          <ul class="collapse list-unstyled" 
+            id="collapseExampleInner"
+            [@expandCollapse]="showMenuInner !== 'conciliationDaily' ? 'closed' : 'open'" 
+            [ngbCollapse]="showMenuInner !== 'conciliationDaily'">
+            <li class="inner-menu-item">
+              <a [routerLinkActive]="'active'" [routerLink]="['/conciliations/daily/with-center']">
+                <i class="fa fa-file-text"></i>
+                Con Centro
+              </a>
+            </li>
+            <li class="inner-menu-item">
+              <a [routerLinkActive]="'active'" [routerLink]="['/conciliations/daily/without-center']">
+                <i class="fa fa-file-text"></i>
+                Sin Centro
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a 
+        data-toggle="collapse" 
+        href="#tablesSubmenu" 
+        (click)="clickedMenuItem(true,'tables')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'tables'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-table"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Tablas </span>
+          </div>
+        </div>
+      </a>
+      <ul class="collapse list-unstyled" 
+        id="collapseExample"
+        [@expandCollapse]="showMenu !== 'tables' ? 'closed' : 'open'" 
+        [ngbCollapse]="showMenu !== 'tables'">
+        <li>
+          <a 
+            data-toggle="collapse" 
+            href="#tablesSubmenu" 
+            (click)="toggleShowPropInner('tablesDimension')" 
+            class="dropdown-toggle inner-menu"
+            [attr.aria-expanded]="showMenuInner === 'tablesDimension'" 
+            aria-controls="collapseExampleInner">
+            <div class="row">
+              <div class="col-2">
+              </div>
+              <div class="col-10">
+                <span class="hideable-text"> Dimensión </span>
+              </div>
+            </div>
+          </a>
+          <ul class="collapse list-unstyled" 
+            id="collapseExampleInner"
+            [@expandCollapse]="showMenuInner !== 'tablesDimension' ? 'closed' : 'open'" 
+            [ngbCollapse]="showMenuInner !== 'tablesDimension'">
+            <li class="inner-menu-item">
+              <a [routerLinkActive]="'active'" [routerLink]="['/tables/dimension/center']">
+                <i class="fa fa-file-text"></i>
+                Centro
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="collapse list-unstyled" 
+        id="collapseExample"
+        [@expandCollapse]="showMenu !== 'tables' ? 'closed' : 'open'" 
+        [ngbCollapse]="showMenu !== 'tables'">
+        <li>
+          <a 
+            data-toggle="collapse" 
+            href="#tablesSubmenu" 
+            (click)="toggleShowPropInner('tablesAuxiliary')" 
+            class="dropdown-toggle inner-menu"
+            [attr.aria-expanded]="showMenuInner === 'tablesAuxiliary'" 
+            aria-controls="collapseExampleInner">
+            <div class="row">
+              <div class="col-2">
+              </div>
+              <div class="col-10">
+                <span class="hideable-text"> Auxiliares </span>
+              </div>
+            </div>
+          </a>
+          <ul class="collapse list-unstyled" 
+            id="collapseExampleInner"
+            [@expandCollapse]="showMenuInner !== 'tablesAuxiliary' ? 'closed' : 'open'" 
+            [ngbCollapse]="showMenuInner !== 'tablesAuxiliary'">
+            <li class="inner-menu-item">
+              <a [routerLinkActive]="'active'" [routerLink]="['/tables/auxiliaries/account-typing']">
+                <i class="fa fa-file-text"></i>
+                Tipificación Cuentas
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+
+      <a data-toggle="collapse" 
+        href="#informesSubmenu" 
+        (click)="clickedMenuItem(true,'informes')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'informes'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-file-text"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Informes </span>
+          </div>
+        </div>
+      </a>
+
+      <ul class="collapse list-unstyled elems" 
+        id="collapseExample" 
+        [@expandCollapse]="showMenu !== 'informes' ? 'closed' : 'open'"
+        [ngbCollapse]="showMenu !== 'informes'">
+          <li>
+            <a [routerLinkActive]="'active'" [routerLink]="['/reports/users']">
+              Personas
+            </a>
+          </li>
+          <!--
+          <li>
+            <a [routerLinkActive]="'active'" [routerLink]="['/reports-mantainer']">
+              Mantenedor Informes
+            </a>
+          </li>
+          <li>
+            <a href="#">Calidad Datos</a>
+          </li>
+          <li>
+            <a href="#">Validación Contable</a>
+          </li>
+          <li>
+            <a href="#">Validación Mínimas</a>
+          </li>
+          <li>
+            <a href="#">Errores ODS</a>
+          </li>
+          <li>
+            <a href="#">Diferencia Válida</a>
+          </li>
+          -->
+        </ul>
+    </li>
+
+    <li>
+      <a data-toggle="collapse" 
+        href="#informesSubmenu" 
+        (click)="clickedMenuItem(true,'processes-log')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'processes-log'" 
+        aria-controls="collapseExample">
+        <div class="row">
+          <div class="col-2">
+            <i class="fa fa-archive"></i>
+          </div>
+          <div class="col-10">
+            <span class="hideable-text"> Log de procesos </span>
+          </div>
+        </div>
+      </a>
+      <ul class="collapse list-unstyled elems" 
+        id="collapseExample" 
+        [@expandCollapse]="showMenu !== 'processes-log' ? 'closed' : 'open'"
+        [ngbCollapse]="showMenu !== 'processes-log'">
+          <li>
+            <a [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/processes-log/apu']">
+              <i class="fa fa-file-text"></i>
+              Procesos APU
+            </a>
+          </li>
+          <li>
+            <a [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/processes-log/ods']">
+              <i class="fa fa-file-text"></i>
+              Procesos ODS
+            </a>
+          </li>
+        </ul>
+    </li>
+
+    <!--
+    <li>
+      <a 
+        data-toggle="collapse" 
+        href="#desarrolloSubmenu" 
+        (click)="clickedMenuItem(true,'desarrollo')" 
+        class="dropdown-toggle sidebar-menu-option"
+        [attr.aria-expanded]="showMenu === 'desarrollo'" 
+        aria-controls="collapseExample"
+        >
+        <i class="fa fa-puzzle-piece"></i>
+        <span class="hideable-text"> Desarrollo </span>
+      </a>
+      <ul class="collapse list-unstyled" 
+        id="collapseExample"
+        [@expandCollapse]="showMenu !== 'desarrollo' ? 'closed' : 'open'" 
+        [ngbCollapse]="showMenu !== 'desarrollo'"
+        >
+        <li>
+          <a href="#">Page 1</a>
+        </li>
+      </ul>
+    </li>
+
+    <-- EJEMPLO DE INNER ->
+    <li>
+      <a 
+        data-toggle="collapse" 
+        href="#ejemploSubmenu" 
+        (click)="clickedMenuItem(true,'ejemplo')" 
+        class="dropdown-toggle"
+        [attr.aria-expanded]="showMenu === 'ejemplo'" 
+        aria-controls="collapseExample"
+        >
+        <i class="fa fa-puzzle-piece"></i>
+        <span class="hideable-text"> Ejemplo usando Inner </span>
+      </a>
+      <ul class="collapse list-unstyled" 
+        id="collapseExample"
+        [@expandCollapse]="showMenu !== 'ejemplo' ? 'closed' : 'open'" 
+        [ngbCollapse]="showMenu !== 'ejemplo'"
+        >
+        <li>
+          <a href="#">Page 1</a>
+        </li>
+        <li>
+          <a 
+            data-toggle="collapse" 
+            href="#ejemploSubmenu" 
+            (click)="toggleShowPropInner('ejemploInner')" 
+            class="dropdown-toggle "
+            [attr.aria-expanded]="showMenuInner === 'ejemploInner'" 
+            aria-controls="collapseExampleInner"
+            >
+            <span class="hideable-text"> Ejemplo Inner </span>
+          </a>
+          <ul class="collapse list-unstyled" 
+            id="collapseExampleInner"
+            [@expandCollapse]="showMenuInner !== 'ejemploInner' ? 'closed' : 'open'" 
+            [ngbCollapse]="showMenuInner !== 'ejemploInner'"
+            >
+            <li class="inner-menu-item">
+              <a href="#">Page 2 INNER EJEMPLO</a>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a 
+        data-toggle="collapse" 
+        href="#conciliacionSubmenu" 
+        (click)="clickedMenuItem(true,'conciliacion')" 
+        class="dropdown-toggle sidebar-menu-option"
+        [attr.aria-expanded]="showMenu === 'conciliacion'" 
+        aria-controls="collapseExample"
+        >
+        <i class="fa fa-puzzle-piece"></i>
+        <span class="hideable-text"> Conciliación </span>
+      </a>
+      <ul class="collapse list-unstyled" 
+        id="collapseExample"
+        [@expandCollapse]="showMenu !== 'conciliacion' ? 'closed' : 'open'" 
+        [ngbCollapse]="showMenu !== 'conciliacion'"
+        >
+        <li>
+          <a href="#">Page 1</a>
+        </li>
+      </ul>
+    </li>
+    
+
+    <li>
+      <a 
+        data-toggle="collapse" 
+        href="#procesosSubmenu" 
+        (click)="clickedMenuItem(true,'procesos')" 
+        class="dropdown-toggle sidebar-menu-option"
+        [attr.aria-expanded]="showMenu === 'procesos'" 
+        aria-controls="collapseExample"
+        >
+        <i class="fa fa-puzzle-piece"></i>
+        <span class="hideable-text"> Procesos </span>
+      </a>
+      <ul class="collapse list-unstyled" 
+        id="collapseExample"
+        [@expandCollapse]="showMenu !== 'procesos' ? 'closed' : 'open'" 
+        [ngbCollapse]="showMenu !== 'procesos'"
+        >
+        <li>
+          <a href="#">Page 1</a>
+        </li>
+      </ul>
+    </li>
+    -->
+
+  </ul>
+</nav>

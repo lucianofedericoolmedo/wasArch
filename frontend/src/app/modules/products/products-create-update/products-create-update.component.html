@@ -1,0 +1,99 @@
+<div>
+  <h3 *ngIf="!editing">Crear Producto</h3>
+  <h3 *ngIf="editing">Modificar Producto</h3>
+</div>
+<form [formGroup]="form" (ngSubmit)="createOrUpdate()">
+  <div class="row">
+    <div class="col-md-6 app-form-group">
+      <label>Prod. Operacional</label>
+      <div class="app-form-input">
+        <fieldset [disabled]="editing">
+          <input type="text" name="codigoProducto" formControlName="codigoProducto" 
+            minlength="2" maxlength="2">
+        </fieldset>
+      </div>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Prod. Normalizado</label>
+      <div class="app-form-input">
+        <fieldset [disabled]="editing">
+          <input type="text" name="codigoProductoNormalizado" formControlName="codigoProductoNormalizado"
+          minlength="2" maxlength="2">
+        </fieldset>
+      </div>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Subprod. Operacional</label>
+      <div class="app-form-input">
+        <fieldset [disabled]="editing">
+          <input type="text" name="codigoSubproducto" formControlName="codigoSubproducto"
+            minlength="4" maxlength="4">
+        </fieldset>
+      </div>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Subprod. Normalizado</label>
+      <div class="app-form-input">
+        <fieldset [disabled]="editing">
+          <input type="text" name="codigoSubproductoNormalizado" formControlName="codigoSubproductoNormalizado"
+            minlength="4" maxlength="4">
+        </fieldset>
+      </div>
+    </div>
+    
+    <div class="col-md-6 app-form-group">
+      <label>Código Sist. Origen</label>
+      <fieldset [disabled]="editing">
+        <div class="app-form-select">
+          <select class="app-select" name="codigoSistemaOrigen" formControlName="codigoSistemaOrigen">
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let codigoSistemaOrigen of codigosSistemaOrigen" [ngValue]="codigoSistemaOrigen">{{ codigoSistemaOrigen }}</option>
+          </select>
+        </div>
+      </fieldset>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Producto Bimonetario</label>
+      <div class="app-form-select">
+        <select class="app-select" name="productoBimonetario" formControlName="productoBimonetario">
+          <option value="">Seleccione una opción</option>
+          <option *ngFor="let subProdOperacional"></option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6 app-form-group">
+      <label>Descripción Subproducto</label>
+      <div class="app-form-input">
+        <input type="text" name="descripcion" formControlName="descripcion">
+      </div>  
+    </div>
+  
+    <div class="col-md-4 col-lg-3 col-xl-2 app-form-group">
+      <label>Fecha Alta</label>
+      <div class="app-form-input">
+        <!-- TODO: extract datepicker behaviour to component -->
+        <fieldset [disabled]="editing">
+          <input ngbDatepicker #d="ngbDatepicker" readonly="readonly" name="fechaAlta" formControlName="fechaAlta"/>
+          <i (click)="!editing && d.toggle()" class="fa fa-calendar app-datepicker-icon">
+          </i>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-form-group app-form-actions">
+    <button type="button" class="app-btn"
+    [routerLinkActive]="'active'" [routerLink]="['/products']">
+    VOLVER
+  </button>
+  <button type="submit" class="app-btn pull-right">
+    GUARDAR
+  </button>
+  </div>
+
+</form>

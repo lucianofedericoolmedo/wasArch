@@ -1,0 +1,25 @@
+.datepicker {
+    padding-left: 0;
+}
+
+.app-btn {
+    margin-top: 4px;
+}
+
+.forms {
+    margin-bottom: 15px;
+}
+
+.pos-relative {
+    position: relative;
+
+    @media (max-width: 768px) {
+        height: 45px;
+    }
+}
+
+.app-btn-action {
+    bottom: 15px;
+    position: absolute;
+    right: 15px
+}

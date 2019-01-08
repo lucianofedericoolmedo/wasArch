@@ -1,0 +1,68 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.ng-content-container {
+    width: -webkit-calc(97% - 40px);
+    width:    -moz-calc(97% - 40px);
+    width:         calc(97% - 40px);
+}
+
+.sidebar-collapsed .ng-content-container {
+    width: -webkit-calc(98% - 250px);
+    width:    -moz-calc(98% - 250px);
+    width:         calc(98% - 250px);
+}
+
+@media (max-width: 1192px) {
+    .ng-content-container {
+        width: -webkit-calc(97% - 40px);
+        width:    -moz-calc(97% - 40px);
+        width:         calc(97% - 40px);
+    }
+    
+    .sidebar-collapsed .ng-content-container {
+        width: -webkit-calc(97% - 250px);
+        width:    -moz-calc(97% - 250px);
+        width:         calc(97% - 250px);
+    }
+}
+
+@media (max-width: 999px) {
+    .ng-content-container {
+        width: -webkit-calc(95% - 40px);
+        width:    -moz-calc(95% - 40px);
+        width:         calc(95% - 40px);
+    }
+}
+
+@media (max-width: 768px) {
+    .ng-content-container {
+        width: -webkit-calc(89% - 40px);
+        width:    -moz-calc(89% - 40px);
+        width:         calc(89% - 40px);
+    }
+    
+    .sidebar-collapsed .ng-content-container {
+        width: 95%;
+        position: absolute;
+    }
+    .sidebar-collapsed .app-sidebar {
+        z-index: 2;
+    }
+}
+
+@media (max-width: 724px) {
+    .ng-content-container {
+        width: -webkit-calc(90% - 40px);
+        width:    -moz-calc(90% - 40px);
+        width:         calc(90% - 40px);
+    }
+}
+
+:not(.sidebar-collapsed) .app-sidebar {
+    width: 60px;
+    z-index: 2;
+}

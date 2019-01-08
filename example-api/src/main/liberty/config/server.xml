@@ -1,0 +1,64 @@
+<!-- Copyright (c) 2015, 2017 IBM Corp.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.-->
+<server description="example-api server">
+
+    <!-- CHECK-->
+    <featureManager>
+        <feature>servlet-3.1</feature>
+        <feature>jsp-2.3</feature>
+        <feature>ejbLite-3.2</feature>
+        <feature>adminCenter-1.0</feature>
+        <feature>jpa-2.1</feature>
+    </featureManager>
+    
+    <httpEndpoint httpPort="9811" httpsPort="9812" host="0.0.0.0"
+        id="defaultHttpEndpoint">
+    <tcpOptions soReuseAddr="true"/>
+
+    </httpEndpoint>
+
+    <!--
+    <keyStore password="adminPassword"/>
+    -->
+    <quickStartSecurity username="adminUser" userPassword="adminPass" />
+    
+    <!-- VEr tema conexion a BD.. -->
+
+    <library id="SpringSampleLibs">
+        <fileset dir="${shared.resource.dir}" includes="*.jar" scanInterval="5s" />
+    </library>
+    <!--
+    <application id="example-api" context-root="${appContext}" location="${appLocation}" name="example-api" type="war">
+    -->
+     
+    <application context-root="example-api" type="war" id="example-api"
+    location="example-api.war" name="example-api">   
+    
+        <classloader commonLibraryRef="SpringSampleLibs" />
+    </application>
+
+    
+    <dataSource id="DefaultDataSource" jndiName="jdbc/oracle">
+        <jdbcDriver libraryRef="OracleLib"/>
+        <properties.oracle URL="jdbc:oracle:thin:@180.250.40.192:5321:srv_RIO233D_ap" user="ODSCORE" password="prueba123"/>
+    </dataSource>
+
+    <library id="OracleLib">
+        <file name="libs/com/oracle/ojdbc6/11.2.0/ojdbc6-11.2.0.jar"/>
+    </library>
+    
+    <!-- 
+    <webApplication contextRoot="example-api" location="example-api.war" />
+  -->
+</server>

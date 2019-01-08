@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+
+	<!-- APPENDERS DEFINITIONS -->
+	<Appenders>
+	    <!-- CONSOLE APPENDER -->
+	    <Console name="consoleAppender" target="System.out">
+	        <PatternLayout>
+	        	<Pattern>[%d{dd/MM/yyyy HH:mm:ss}] %highlight{[%level]}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue} [%c]:%L - %m%n</Pattern>
+	        </PatternLayout>
+	    </Console>
+	    
+	    <!-- FILE: Appender for RequestInfo log 
+	    <RollingFile name="requestInfoAppender" 
+	    	fileName="${catalina.base}/logs/requestInfo.log"
+	    	filePattern="${catalina.base}/logs/requestInfo.%d{MM-dd-yyyy}-%i.log">
+	        <PatternLayout>
+	        	<Pattern>[%d{dd/MM/yyyy HH:mm:ss}] %m%n%n</Pattern>
+	        </PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+	    </RollingFile>
+		-->
+
+	    <RollingFile name="requestInfoAppender">
+		  <FileName>/home/dev/generalLogs/requestInfo.log</FileName>
+		  <FilePattern>/home/dev/generalLogs/requestInfo.%d{MM-dd-yyyy}-%i.log</FilePattern>
+		  <PatternLayout>
+		    <Pattern>[%d{dd/MM/yyyy HH:mm:ss}] %m%n%n</Pattern>
+		  </PatternLayout>
+		  <Policies>
+		    <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		  </Policies>
+		</RollingFile>
+	    
+	    <!-- FILE: Appender for Services log -->
+	    <RollingFile name="servicesAppender">
+	    	<FileName>/home/dev/generalLogs/services-logs.log</FileName>
+		  	<FilePattern>/home/dev/generalLogs/services-logs.%d{MM-dd-yyyy}-%i.log</FilePattern>
+	        <PatternLayout>
+	        	<Pattern>[%d{dd/MM/yyyy HH:mm:ss}] %highlight{[%level]}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue} [%c]:%L - %m%n</Pattern>
+	        </PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+	    </RollingFile>
+	    
+	    <!-- FILE: Appender for Rest log -->
+	    <RollingFile name="restsAppender">
+	    	<FileName>/home/dev/generalLogs/rests-logs.log</FileName>
+		  	<FilePattern>/home/dev/generalLogs/rests-logs.%d{MM-dd-yyyy}-%i.log</FilePattern>
+	        <PatternLayout>
+	        	<Pattern>[%d{dd/MM/yyyy HH:mm:ss}] %highlight{[%level]}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue} [%c]:%L - %m%n</Pattern>
+	        </PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+	    </RollingFile>
+	    
+	    
+    </Appenders>
+    
+    <!-- LoggerS DEFINITIONS -->
+   	<!-- Loggers Discriminados por package -->
+	<!-- 
+		El siguiente Logger es el padre de todos los package dentro de 'backend'. 
+		Por lo tanto cambiando la propiedad 'value' afectara al nivel de log de todos los herederos.
+		Si se desea APAGAR el log por consola, solo se debe setear la propiedad additivity en FALSE.
+	 -->
+
+	<Loggers>
+	    <Logger name="com.isban.javaapps.reporting" level="INFO" additivity="true">
+	    	<AppenderRef ref="requestInfoAppender" />
+	    	<AppenderRef ref="servicesAppender" />
+	    	<AppenderRef ref="restsAppender" />
+	      	<AppenderRef ref="consoleAppender" />
+	    </Logger>
+	    <Root level="INFO">
+	      <AppenderRef ref="consoleAppender" />
+	    </Root>
+	</Loggers>
+
+</Configuration>

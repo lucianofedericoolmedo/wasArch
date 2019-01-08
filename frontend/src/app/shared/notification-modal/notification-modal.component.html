@@ -1,0 +1,16 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title app-color mx-auto">
+      <strong>
+          <span> {{type === 'success' ? 'Se ha realizado la operación con éxito.' : '¡Ha ocurrido un error!'}} </span>
+      </strong>
+    </h4>
+  </div>
+  <div class="modal-body">
+    <img class="modal-img d-block mx-auto" src="assets/SANTANDER_RIO_MODAL.svg">
+    <p class="text-center">{{ message }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="app-btn mx-auto" (click)="activeModal.close('Close click')">CERRAR</button>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+.app-btn {
+    margin-left: 10px;
+}
+
+.app-pager {
+    display: flex !important;
+    justify-content: center !important;
+    font-size: 14px;
+
+    /deep/ ngb-pagination {
+        outline: none;
+    }
+
+    /deep/ .page-link {
+        color: #95120D;
+        background-color: transparent;
+        border: none;
+    }
+
+    /deep/ .page-item.disabled .page-link {
+        color: #6C757D;
+        background-color: transparent;
+        border: none;
+    }
+
+    /deep/ .page-item.active .page-link {
+        color: #FFF;
+    }
+
+    /deep/ .page-item.active,  {
+        background-color: #9F9F9F;
+        border-radius: 3px;
+    }
+}
+
+.app-form-group {
+    margin-bottom: 0;
+}
+
+.app-paginated-table {
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    th {
+        font-weight: normal;
+    }
+    td {
+        border-right: solid #dee2e6 1px;
+        color: #9F9F9F;
+    }
+    td:last-child {
+        border-right: none;
+    }
+}
+thead {background-color: #ededed;}

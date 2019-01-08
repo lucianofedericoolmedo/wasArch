@@ -1,0 +1,68 @@
+<div>
+  <div>
+    <h3>Productos aplicativo fuente</h3>
+  </div>
+  <form [formGroup]="form" class="mb-3">
+    <div class="row search-group-container">
+      <div class="col-md-6">
+          <div class="app-form-group">
+            <label>Prod. Operacional</label>
+            <div class="app-form-select">
+              <select class="app-select" name="codigoProducto" formControlName="codigoProducto"
+                (change)="changedProductoOperacional($event.target.value)">
+                <option value="">Seleccione una opción</option>
+                <option *ngFor="let prodOperacional of productosOperacional">{{ prodOperacional }}</option>
+              </select>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="app-form-group">
+          <label>Subprod. Operacional</label>
+          <div class="app-form-select">
+            <select class="app-select" name="codigoSubproducto" formControlName="codigoSubproducto">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let subProdOperacional of subproductosOperacional" [ngValue]="subProdOperacional[0]">{{ subProdOperacional }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <button type="button" class="app-btn pull-right"
+          (click)="search()">
+          BUSCAR
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="app-form-group">
+    <button type="button" class="app-btn"
+      (click)="goBack()">
+      VOLVER
+    </button>
+    <span class="pull-right">
+      <ng-template #descargarXls>
+        <span style="white-space: nowrap;">Descargar xls</span>
+      </ng-template>
+      <app-file-downloader
+        [infoMsg]="descargarXls"
+        [restCallFunction]="getRestCallFunction()"
+        [fileName]="getApplicationProductSourceFileName()"
+        [fileType]="getDownloadedFileType()">
+      </app-file-downloader>
+      <button type="button" class="app-btn app-btn-actions"
+        (click)="save()">
+        GRABAR
+      </button>
+    </span>
+  </div>
+
+  <app-paginated-table
+    [context]="getProductsPaginationContext()"
+    [fields]="productTableDataFieldsName"
+    [columns]="productTableDataFieldsColumns">
+  </app-paginated-table>
+</div>

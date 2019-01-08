@@ -1,0 +1,13 @@
+<div>
+  <h3>Conciliación mensual con centro</h3>
+</div>
+<app-generic-conciliation-table
+  [context]="getContext()"
+  [tableData]="tableData"
+  [tableHeaders]="tableHeaders"
+  [filteringMethod]="getServiceFilteringMethodName()"
+  [filteringFields]="filteringFields"
+  [filtersCssClasses]="filterCssClasses"
+  [fileDownload]="getFileDownloadName()"
+  [isEmpty]="setAsEmpty()">
+</app-generic-conciliation-table>

@@ -1,0 +1,10 @@
+<app-header></app-header>
+<div class="wrapper" [ngClass]="{'sidebar-collapsed':isCollapsed}">
+  <app-sidebar-menu class="app-sidebar" [toggleSideMenuSubject]="toggleSideBarSubj$"></app-sidebar-menu>
+  <div class="container-fluid m-3 ng-content-container">
+    <ng-content></ng-content>
+  </div>
+</div>
+<!-- Uncomment for use a footer for the application
+<app-footer></app-footer>
+-->

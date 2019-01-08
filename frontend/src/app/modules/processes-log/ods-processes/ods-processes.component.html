@@ -1,0 +1,76 @@
+<div>
+    <h4>Log de procesos - Procesos ODS</h4>
+  </div>
+<div>
+  <form [formGroup]="form" class="search-group-container">
+    <div class="row">
+      <div class="col-lg-6 col-xl-4">
+        <div class="app-form-group">
+          <label>Fecha</label>
+          <div class="app-form-select">
+            <select class="app-select" name="fecha" formControlName="fecha">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let fecha of filters.fechas">{{ fecha }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-6 col-xl-4">
+        <div class="app-form-group">
+          <label>Contenido</label>
+          <div class="app-form-select">
+            <select class="app-select" name="contenido" formControlName="contenido"
+              >
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let contenido of filters.contenidos" [value]="contenido.codigo">
+                {{ contenido.codigo }} - {{ contenido.descripcion }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-4">
+        <div class="app-form-group">
+          <label>Periodicidad</label>
+          <div class="app-form-select">
+            <select class="app-select" name="periodicidad" formControlName="periodicidad">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let periodicidad of filters.periodicidad">{{ periodicidad }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-form-group app-btn-group">
+      <button type="button" class="app-btn"
+        (click)="search()">
+        BUSCAR
+      </button>
+    </div>
+  </form>
+
+  <app-paginated-table
+    [context]="getPaginationContext()"
+    [fields]="tableFields"
+    [columns]="tableColumns"
+    [query]="queryObject">
+  </app-paginated-table>
+
+  <ng-template #descargarXls>
+    <span style="white-space: nowrap;">Descargar xls</span>
+  </ng-template>
+
+  <div class="app-form-group app-btn-group">
+    <app-file-downloader
+      class="pull-right app-btn-download"
+      [infoMsg]="descargarXls"
+      [restCallFunction]="getRestCallFunction()"
+      [fileName]="getFileName()"
+      [fileType]="getDownloadedFileType()">
+    </app-file-downloader>
+  </div>
+
+</div>

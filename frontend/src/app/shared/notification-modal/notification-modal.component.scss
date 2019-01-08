@@ -1,0 +1,38 @@
+.modal-content {
+    background-color: #f2f2f2;
+
+    .modal-header, .modal-body {
+        position: relative;
+        border: none !important;
+
+        .close {
+            position: absolute;
+            right: 20px;
+        }
+
+        p {
+            color: #767575;
+        }
+    }
+
+    .modal-footer {
+        .app-btn {
+            text-align: center;
+        }
+    }
+
+    .modal-img {
+        width: 60px;
+        margin-bottom: 20px;
+        pointer-events: none;
+    }
+
+    .app-btn {
+        background-color: #f2f2f2;
+    }
+
+    .app-btn:active {
+        background-color: #dd433c;
+        color: #FFF;
+    }
+}

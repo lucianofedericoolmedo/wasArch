@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <form [formGroup]="form" class="mb-3">
+    <div class="row search-group-container">
+      <div class="col-md-4" *ngIf="filteringFields.tipoSaldo">
+        <div class="app-form-group">
+          <label>Tipo Saldo</label>
+          <div class="app-form-select">
+            <select class="app-select" name="tipoSaldo" formControlName="tipoSaldo">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let tipoSaldo of tiposSaldos">{{ tipoSaldo }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4" *ngIf="filteringFields.diferencias">
+        <div class="app-form-group">
+          <label>Divisas</label>
+          <div class="app-form-select">
+            <select class="app-select" name="diferencias" formControlName="diferencias">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let diferencia of diferencias">{{ diferencias }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" >
+        <div class="app-form-group">
+          <label>Entidades</label>
+          <div class="app-form-select">
+            <select class="app-select" name="entidades" formControlName="entidades">
+              <option value="">Seleccione una opción</option>
+              <option [value]="entidad.codigo" *ngFor="let entidad of entidades">{{ entidad.descripcion }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="filteringFields.fecha"
+        [ngClass]="filtersCssClasses.fecha">
+        <div class="app-form-group">
+          <label>Fecha</label>
+          <div class="app-form-select">
+            <select class="app-select" name="fecha" formControlName="fecha">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let fecha of fechas">{{ fecha }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="filteringFields.contenido"
+        [ngClass]="filtersCssClasses.contenido">
+        <div class="app-form-group">
+          <label>Contenido</label>
+          <div class="app-form-select">
+            <select class="app-select" name="contenido" formControlName="contenido">
+              <option value="">Seleccione una opción</option>
+              <option *ngFor="let contenido of contenidos">{{ contenido.codigo }} - {{ contenido.descripcion }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-form-group" *ngIf="filteringFields.codigoCuentaContable"
+        [ngClass]="filtersCssClasses.codigoCuentaContable">
+        <label>Código Cta. Contable: (%)</label>
+        <div class="app-form-input">
+          <input type="text" name="codigoCuentaContable" formControlName="codigoCuentaContable">
+        </div>
+      </div>
+
+      <div class="app-form-group" *ngIf="filteringFields.cuentaContable"
+        [ngClass]="filtersCssClasses.cuentaContable">
+        <label class="no-break-line">Cuenta Contable: (%)</label>
+        <div class="app-form-input">
+          <input type="text" name="cuentaContable" formControlName="cuentaContable">
+        </div>
+      </div>
+
+      <div class="app-form-group" *ngIf="filteringFields.centroContable"
+        [ngClass]="filtersCssClasses.centroContable">
+        <label class="no-break-line">Centro Contable: (%)</label>
+        <div class="app-form-input">
+          <input type="text" name="centroContable" formControlName="centroContable">
+        </div>  
+      </div>
+
+      <div class="col-12">
+        <button type="button" class="app-btn pull-right"
+          (click)="search()">
+          BUSCAR
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="mb-3">
+  <app-paginated-table [context]="context"
+  [fields]="tableData"
+  [columns]="tableHeaders">
+</app-paginated-table>
+</div>
+
+<ng-template #descargarXls>
+  <span style="white-space: nowrap;">Descargar xls</span>
+</ng-template>
+
+<div class="app-form-group app-btn-group">
+    <app-file-downloader
+    class="pull-right app-btn-download"
+    [infoMsg]="descargarXls"
+    [restCallFunction]="getRestCallFunction()"
+    [fileName]="getApplicationProductSourceFileName()"
+    [fileType]="getDownloadedFileType()">
+  </app-file-downloader>
+</div>

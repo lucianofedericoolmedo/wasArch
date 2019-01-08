@@ -1,0 +1,13 @@
+button {
+    &:hover span.rest-lbl {
+        display: none;
+    }
+
+    span.hover-lbl {
+        display: none
+    }
+
+    &:hover span.hover-lbl {
+        display: initial;
+    }
+}

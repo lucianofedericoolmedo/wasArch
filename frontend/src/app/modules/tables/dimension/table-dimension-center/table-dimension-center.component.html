@@ -1,0 +1,29 @@
+<div>
+  <h3>Tablas dimensión centro</h3>
+</div>
+<div>
+  <form [formGroup]="form" class="search-group-container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="app-form-group">
+          <label>Código Centro: (%)</label>
+          <div class="app-form-input">
+            <input type="text" name="codigoCentro" formControlName="codigoCentro">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-form-group app-btn-group">
+      <button type="button" class="app-btn"
+        (click)="search()">
+        BUSCAR
+      </button>
+    </div>
+  </form>
+  <app-paginated-table
+    [context]="getPaginationContext()"
+    [fields]="tableFields"
+    [columns]="tableColumns"
+    [query]="queryObject">
+  </app-paginated-table>
+</div>

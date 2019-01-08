@@ -1,0 +1,52 @@
+<span>
+  <form [formGroup]="queryForm" class="search-group-container row mb-3" (ngSubmit)="search()">
+    <div class="app-form-group col-md-6">
+      <label>Fecha Congelamiento</label>
+      <div class="app-form-select">
+        <select class="app-select" name="fechaCongelamiento" formControlName="fechaCongelamiento">
+          <option value="">Seleccione una opción</option>
+          <option [value]="date.value" *ngFor="let date of freezingDates">{{ date.value }}, {{ date.description }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6 pos-relative">
+      <button type="submit" class="app-btn pull-right app-btn-action">
+        BUSCAR
+      </button>
+    </div>
+  </form>
+  <form [formGroup]="addForm" class="row search-group-container" (ngSubmit)="add()">
+    <div class="app-form-group col-md-6">
+      <label>Nueva Fecha Congelamiento</label>
+      <div class="col-lg-6 datepicker app-form-input">
+        <input ngbDatepicker #addFechaCongelamiento="ngbDatepicker" readonly="readonly" name="fechaCongelamiento" formControlName="fechaCongelamiento"/>
+        <i (click)="addFechaCongelamiento.toggle()" class="fa fa-calendar app-datepicker-icon"></i>
+      </div>
+    </div>
+    <div class="col-md-6 pos-relative">
+      <button type="submit" class="app-btn pull-right app-btn-action">
+        AGREGAR
+      </button>
+    </div>
+  </form>
+  <div class="offset-sm-1 col-sm-10 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+    <app-paginated-table [context]="context"
+      [fields]="tableInputs"
+      [columns]="tableHeaders">
+    </app-paginated-table>
+  </div>
+
+  <ng-template #descargarXls>
+    <span style="white-space: nowrap;">Descargar xls</span>
+  </ng-template>
+  
+  <div class="app-form-group app-btn-group">
+      <app-file-downloader
+      class="pull-right app-btn-download"
+      [infoMsg]="descargarXls"
+      [restCallFunction]="getRestCallFunction()"
+      [fileName]="getApplicationProductSourceFileName()"
+      [fileType]="getDownloadedFileType()">
+    </app-file-downloader>
+  </div>
+</span>

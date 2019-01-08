@@ -1,0 +1,41 @@
+<form [formGroup]="form" class="search-group-container">
+  <div class="row">
+    <div class="col-md-4 app-form-group">
+      <label>Dimensión</label>
+      <div class="app-form-select">
+        <select class="app-select" name="dimension" formControlName="dimension">
+          <option value="">Seleccione una opción</option>
+          <option *ngFor="let dimensionCode of dimensionsCodes">{{ dimensionCode }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="col-md-4 app-form-group">
+      <label>Jerarquía</label>
+      <div class="app-form-select">
+        <select class="app-select" name="jerarquia" formControlName="jerarquia">
+          <option value="">Seleccione una opción</option>
+          <option *ngFor="let hierarchyCode of hierarchiesCodes">{{ hierarchyCode }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-4 app-form-group">
+      <label>Nivel</label>
+      <div class="app-form-input">
+        <input type="number" name="nivel" formControlName="nivel">
+      </div>
+    </div>
+  </div>
+
+  <div class="app-form-group app-btn-group">
+    <button type="button" class="app-btn"
+      (click)="search()">
+      BUSCAR
+    </button>
+    <button type="button" class="app-btn ml-1" [routerLinkActive]="'active'" [routerLink]="['/hierarchies/global-groups/create']">
+      AGREGAR
+    </button>
+  </div>
+
+</form>

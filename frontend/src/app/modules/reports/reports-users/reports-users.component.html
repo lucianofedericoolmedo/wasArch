@@ -1,0 +1,46 @@
+<div>
+    <h3>Informes personas</h3>
+  </div>
+<div>
+  <form [formGroup]="form" class="search-group-container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="app-form-group">
+          <label>Número Persona: (%)</label>
+          <div class="app-form-input">
+            <input type="text" name="numeroPersona" formControlName="numeroPersona">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="app-form-group">
+          <label>Código Entidad: (%)</label>
+          <div class="app-form-input">
+            <input type="text" name="codigoEntidad" formControlName="codigoEntidad">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-form-group app-btn-group">
+      <button type="button" class="app-btn"
+        (click)="search()">
+        BUSCAR
+      </button>
+    </div>
+  </form>
+  <app-paginated-table [context]="getUsersPaginationContext()"
+    [fields]="userTableDataFieldsName"
+    [columns]="userTableDataFieldsColumns"
+    [query]="queryObject">
+  </app-paginated-table>
+  <ng-template #descargarXls>
+    <span style="white-space: nowrap;">Descargar xls</span>
+  </ng-template>
+  <app-file-downloader
+    class="pull-right"
+    [infoMsg]="descargarXls"
+    [restCallFunction]="getRestCallFunction()"
+    [fileName]="getApplicationProductSourceFileName()"
+    [fileType]="getDownloadedFileType()">
+  </app-file-downloader>
+</div>

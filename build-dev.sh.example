@@ -1,0 +1,2 @@
+# Cambiar ubicacion de carpeta WLP, em mi caso
+mvn clean install && cp example-api/src/main/liberty/config/server.xml /home/dev/Escritorio/wlp/usr/servers/demoServer && cp example-ear/target/example-ear.ear /home/dev/Escritorio/wlp/usr/servers/demoServer/dropins 

@@ -1,0 +1,15 @@
+<div>
+  <h3>Conciliación diaria sin centro</h3>
+</div>
+<div>
+  <app-generic-conciliation-table
+    [context]="getContext()"
+    [tableData]="tableData"
+    [tableHeaders]="tableHeaders"
+    [filteringMethod]="getServiceFilteringMethodName()"
+    [filteringFields]="filteringFields"
+    [filtersCssClasses]="filterCssClasses"
+    [fileDownload]="getFileDownloadName()"
+    [isEmpty]="setAsEmpty()">
+  </app-generic-conciliation-table>
+</div>

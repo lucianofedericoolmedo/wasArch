@@ -1,0 +1,176 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Regular.ttf) format("opentype");
+}
+
+/*
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Bold.ttf) format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Italic.ttf) format("truetype");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(assets/font/Lato-Black.ttf) format("truetype");
+    font-weight: black;
+}
+*/
+
+.app-form-group label {
+    padding-top: 8px;
+}
+
+.no-break-line {
+    white-space: nowrap
+}
+
+.app-color, .app-btn {
+    color: #EE332B;
+}
+
+button {
+    outline: none !important;
+}
+
+.app-bg-color {
+    background-color: #EE332B;
+}
+
+.app-active-input-color, .radio-inline.active {
+    color: #D92921;
+}
+
+.app-btn {
+    background-color: white;
+    border: solid #dd433c 2px;
+    padding: 6px 16px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.app-btn:active {
+    background-color: #dd433c;
+    color: #FFF;
+}
+
+* {
+    font-family: 'lato';
+}
+
+.search-group-container {
+    background-color: #ededed;
+    border: #cecece solid;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+
+    .app-btn {
+        background-color: #ededed;
+    }
+
+    .app-btn:active {
+        background-color: #dd433c;
+        color: #FFF;
+    }
+}
+
+.app-form-group {
+    position: relative;
+    margin-bottom: 15px;
+
+    input, .app-form-select select.app-select {
+        width: 100%;
+        background-color: white;
+        color: #C1C1C1;
+        border-color: #DBDBDB;
+        border-radius: 4px;
+        height: 42px;
+        padding: 6px 2px 7px 14px;
+        font-size: 14px;
+    }
+
+    input {
+        border: solid 1px #DBDBDB;
+        outline: none;
+    }
+
+    .app-form-select select.app-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -ms-word-break: normal;
+        word-break: normal;
+        outline: none;
+    }
+
+    .app-form-select select.app-select option {
+        color: #767575;
+    }
+
+    input:disabled {
+        background-color: #DBDBDB;
+    }
+
+    select.app-select:disabled {
+        background-color: #DBDBDB;
+    }
+}
+
+.app-datepicker-icon {
+    color: #C1C1C1;
+    position: absolute; 
+    top: 12px; 
+    left: 12px;
+}
+
+.app-form-input {
+    input[ngbDatepicker] {
+        padding-left: 34px;
+    }
+}
+
+/*
+select.app-select option:checked {
+    background:#333;
+    padding:20px;
+    width:100px;
+    border:3px solid #F00;
+}
+*/
+
+.app-form-input, .app-form-select {
+    position: relative;
+}
+
+/*To remove button from IE11 */
+select::-ms-expand {
+    display: none;
+}
+
+.app-form-select:after {
+    content:"\f0d7 ";
+    font-family: FontAwesome;
+    color: #FFF;
+    right: 0;
+    padding: 10px 16px;
+    position: absolute;
+    pointer-events: none;
+    background-color: #D92921;
+    height: 42px;
+    width: 42px;
+    border-radius: 0 3px 3px 0;
+
+    position: absolute;
+    pointer-events: none;
+}

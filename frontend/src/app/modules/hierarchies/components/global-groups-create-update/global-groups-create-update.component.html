@@ -1,0 +1,78 @@
+<div>
+  <h3>Jerarquías - Crear Grupo Global</h3>
+</div>
+<form [formGroup]="form" (ngSubmit)="createOrUpdate()">
+  <div class="row">
+    <div class="col-md-6 app-form-group">
+      <label>Dimensión</label>
+      <div class="app-form-select">
+        <select class="app-select" name="dimension" formControlName="codigoDimension">
+          <option value="">Seleccione una opción</option>
+          <option *ngFor="let dimensionCode of dimensionsCodes">{{ dimensionCode }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Jerarquía</label>
+      <div class="app-form-select">
+        <select class="app-select" name="jerarquia" formControlName="codigoJerarquia">
+          <option value="">Seleccione una opción</option>
+          <option *ngFor="let hierarchyCode of hierarchiesCodes">{{ hierarchyCode }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6 app-form-group">
+      <label>Nivel Padre</label>
+      <fieldset [disabled]="editing">
+        <div class="app-form-select">
+          <select class="app-select" name="nivelPadre" formControlName="nivelPadre">
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let level of parentsLevels">{{ level }}</option>
+          </select>
+        </div>
+      </fieldset>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Valor Padre</label>
+      <fieldset [disabled]="editing">
+        <div class="app-form-select">
+          <select class="app-select" name="valorPadre" formControlName="valorPadre">
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let value of parentsValuesCodes">{{ value }}</option>
+          </select>
+        </div>
+      </fieldset>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Valor Nodo</label>
+      <div class="app-form-input">
+        <fieldset [disabled]="editing">
+          <input type="text" name="valorNodo" formControlName="valorNodo">
+        </fieldset>
+      </div>
+    </div>
+  
+    <div class="col-md-6 app-form-group">
+      <label>Descripción</label>
+      <div class="app-form-input">
+        <fieldset [disabled]="editing">
+          <input type="text" name="descripcion" formControlName="descripcion">
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-form-group app-form-actions">
+    <button type="button" class="app-btn"
+      [routerLinkActive]="'active'" [routerLink]="['/hierarchies/global-groups']">
+      VOLVER
+    </button>
+    <button type="submit" class="app-btn pull-right">
+      GUARDAR
+    </button>
+  </div>
+</form>
